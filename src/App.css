@@ -6,3 +6,10 @@
 a{
   text-decoration: none;
 }
+ul{
+  list-style-type: none;
+}
+
+.formContainer__width{
+  word-wrap: break-word;
+}
