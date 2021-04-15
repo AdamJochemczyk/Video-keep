@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {Form, FormGroup,Label,Button} from "reactstrap";
 
 enum VideoPlatform {
   youtube,
@@ -16,13 +17,14 @@ const AddVideoForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<VideoInputData>();
-  const onSubmit = (data: VideoInputData) => console.log(data);
+
+  const onSubmit = (data: VideoInputData) => {console.log(data)};
 
   return (
     <div className="container">
       <div className="row justify-content-center">
         <div className="col-6 shadow-lg p-3 mt-3 ">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <div className="formContainer__width text-center">
               <h2>Input video link like:</h2>
               <ul>
@@ -34,8 +36,8 @@ const AddVideoForm: React.FC = () => {
             </div>
             <div className="row justify-content-center">
               <div className="col-6">
-                <div className="form-group">
-                  <label>Link: </label>
+                <FormGroup>
+                  <Label>Link: </Label>
                   <input
                     className="form-control"
                     {...register("link", { required: true })}
@@ -43,28 +45,29 @@ const AddVideoForm: React.FC = () => {
                   {errors.link && (
                     <p className="text-danger">This field is required</p>
                   )}
-                </div>
-                <div className="form-group">
-                  <label>Video platform: </label>
+                </FormGroup>
+                <FormGroup>
+                  <Label>Video platform: </Label>
                   <select
                     className="form-control"
                     {...register("platform", { required: true })}
                   >
-                    <option>YouTube</option>
-                    <option>Vimeo</option>
+                    <option disabled selected value="">--select an option --</option>
+                    <option value="Youtube">YouTube</option>
+                    <option value="Vimeo">Vimeo</option>
                   </select>
                   {errors.platform && (
                     <p className="text-danger">This field is required</p>
                   )}
-                </div>
-                <div className="d-flex justify-content-end">
-                  <button type="submit" className="btn btn-primary mt-3">
+                </FormGroup>
+                <div className="d-flex justify-content-end mt-3">
+                  <Button type="submit" color="primary">
                     Add to library
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>

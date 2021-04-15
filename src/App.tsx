@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <Route path="/video-add">
+        <Route exact path={["/", "/video-add"]}>
           <AddVideoForm />
         </Route>
         <Route path="/video-gallery">
