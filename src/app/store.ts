@@ -1,8 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import gallerySettingsReducer from './data/gallerySettingsSlice';
 
 export const store = configureStore({
   reducer: {
-    
+    gallerySettings: gallerySettingsReducer,
   },
 });
 
