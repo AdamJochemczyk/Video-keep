@@ -42,19 +42,26 @@ export const gallerySettingsSlice = createSlice({
       state.elementsOnPage = action.payload;
     },
     changeSortBy: (state, action: PayloadAction<possibleSortMethods>) => {
-        state.sortBy=action.payload;
+      state.sortBy = action.payload;
     },
   },
 });
 
-export const { prevPage, nextPage,changeDisplayMethod,changeElementsOnPage,changeSortBy } = gallerySettingsSlice.actions;
+export const {
+  prevPage,
+  nextPage,
+  changeDisplayMethod,
+  changeElementsOnPage,
+  changeSortBy,
+} = gallerySettingsSlice.actions;
 
 export const selectPage = (state: RootState) => state.gallerySettings.page;
 
 export const selectDisplayMethod = (state: RootState) =>
   state.gallerySettings.displayMethod;
-  
-export const selectElementsOnPage = (state: RootState) => state.gallerySettings.elementsOnPage;
+
+export const selectElementsOnPage = (state: RootState) =>
+  state.gallerySettings.elementsOnPage;
 
 export const selectSortBy = (state: RootState) => state.gallerySettings.sortBy;
 

@@ -1,10 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import {RoundedButton} from '../../components';
+
 import {useGallerySettings} from './useGallerySettings';
 const VideoGallerySettings = () => {
   
   const {
     page,
+    maxPage,
     displayMethod,
     elementsOnPage,
     sortMethod,
@@ -13,6 +16,10 @@ const VideoGallerySettings = () => {
     handlePrevPage,
     handleNextPage,
     handleSortChange,
+    handleDeleteAll,
+    handleShowDemoVideos,
+    handleShowMyVideos,
+    toggleVideos,
   } = useGallerySettings();
 
   return (
@@ -44,9 +51,11 @@ const VideoGallerySettings = () => {
         <Col sm="12" md="2" className="d-flex flex-column">
           <div>Page:</div>
           <div className="d-flex justify-content-around align-items-center">
-            <button onClick={handlePrevPage}>&#60;</button>
-            <p>{page} z 10</p>
-            <button onClick={handleNextPage}>&#62;</button>
+            <RoundedButton onClick={handlePrevPage}>&#60;</RoundedButton>
+            <p>
+              {page} of {maxPage}
+            </p>
+            <RoundedButton onClick={handleNextPage}>&#62;</RoundedButton>
           </div>
         </Col>
         <Col
@@ -54,14 +63,24 @@ const VideoGallerySettings = () => {
           md="3"
           className="d-flex justify-content-around align-items-center"
         >
-          <Button color="danger">Delete all</Button>
-          <Button color="secondary">Demo videos</Button>
+          <Button color="danger" onClick={handleDeleteAll}>
+            Delete all
+          </Button>
+          {toggleVideos ? 
+          <Button color="secondary" onClick={handleShowDemoVideos}>
+            Demo videos
+          </Button> 
+          :<Button color="secondary" onClick={handleShowMyVideos}>
+            My videos
+          </Button> }
         </Col>
         <Col sm="12" md="2" className="d-flex flex-column">
           <label>Sort by:</label>
-          <select className="form-control"
-          onChange={handleSortChange}
-          defaultValue={sortMethod}>
+          <select
+            className="form-control"
+            onChange={handleSortChange}
+            defaultValue={sortMethod}
+          >
             <option value="oldest">Oldest</option>
             <option value="newest">Newest</option>
             <option value="favorite">Favorite</option>

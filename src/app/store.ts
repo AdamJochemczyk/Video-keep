@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import gallerySettingsReducer from './data/gallerySettingsSlice';
+import videosReducer from './data/videoSlice';
 
 export const store = configureStore({
   reducer: {
     gallerySettings: gallerySettingsReducer,
+    videos: videosReducer,
   },
 });
 
