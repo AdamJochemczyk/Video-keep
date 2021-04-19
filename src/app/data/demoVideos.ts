@@ -2,13 +2,15 @@ import {VideoData} from './videoSlice';
 
 export const demoVideos: VideoData[] = [
   {
-    id: "s0s-6Iekyv",
+    id: "19Xwd2O7I2U",
     addedAt: "27-10-1998",
     isFavorite: false,
+    videoPlatform: "youtube",
   },
   {
-    id: "wLYuZQTCLzM",
+    id: "8951807",
     addedAt: "27-10-1998",
     isFavorite: true,
+    videoPlatform: "vimeo",
   },
 ];

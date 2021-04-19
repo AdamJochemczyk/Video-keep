@@ -1,4 +1,4 @@
-import { SyntheticEvent} from 'react';
+import { SyntheticEvent,useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {
     selectPage,
@@ -14,14 +14,23 @@ import {
     possibleElementsOnPage,
     possibleSortMethods
 }from '../../app/data/gallerySettingsSlice';
+import {
+  deleteAll,
+  showDemoVideos,
+  selectMaxPage,
+  showMyVideos,
+} from "../../app/data/videoSlice";
 
 export const useGallerySettings=()=>{
+
+    const [toggleVideos, setToggleVideos] = useState<boolean>(true)
 
     const dispatch = useDispatch()
     const displayMethod=useSelector(selectDisplayMethod);
     const page=useSelector(selectPage)
     const elementsOnPage=useSelector(selectElementsOnPage)
     const sortMethod=useSelector(selectSortBy);
+    const maxPage=useSelector(selectMaxPage)
 
     const handleDisplayMethodChange = (ev: SyntheticEvent<HTMLSelectElement>) => {
       const target = ev.target as HTMLSelectElement;
@@ -44,8 +53,9 @@ export const useGallerySettings=()=>{
     }
 
     const handleNextPage=()=>{
-        //max page check
-        dispatch(nextPage());
+        if(page<maxPage){
+            dispatch(nextPage());
+        }
     }
 
     const handleSortChange = (ev: SyntheticEvent<HTMLSelectElement>) => {
@@ -54,8 +64,29 @@ export const useGallerySettings=()=>{
         dispatch(changeSortBy(newSortMethod as possibleSortMethods));
     };
 
+    const deleteVideosFromUi=()=>{
+        dispatch(deleteAll());
+    }
+
+    const handleDeleteAll=()=>{
+        deleteVideosFromUi();
+        //TODO: delete from DB
+    }
+
+    const handleShowDemoVideos=()=>{
+        setToggleVideos(!toggleVideos);
+        dispatch(showDemoVideos());
+    }
+
+    const handleShowMyVideos=()=>{
+        setToggleVideos(!toggleVideos);
+        //get Data from DB and push it to state
+        dispatch(showMyVideos());
+    }
+
     return {
       page,
+      maxPage,
       displayMethod,
       elementsOnPage,
       sortMethod,
@@ -64,5 +95,9 @@ export const useGallerySettings=()=>{
       handlePrevPage,
       handleNextPage,
       handleSortChange,
+      handleDeleteAll,
+      handleShowDemoVideos,
+      handleShowMyVideos,
+      toggleVideos,
     };
 }

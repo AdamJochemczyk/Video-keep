@@ -5,6 +5,7 @@ const AwesomeButton=styled.button`
  border: none;
  margin: 0 1rem;
  padding: 0 .5rem;
+ background-color: transparent;
  &:hover{
      border: 2px solid #4CAF50;
  }

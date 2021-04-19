@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import {Form, FormGroup,Label,Button} from "reactstrap";
 
-enum VideoPlatform {
+export enum VideoPlatform {
   youtube,
   vimeo,
 }

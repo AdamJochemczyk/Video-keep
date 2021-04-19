@@ -13,3 +13,8 @@ ul{
 .formContainer__width{
   word-wrap: break-word;
 }
+
+iframe {
+  width: 100%;
+  height: 300px;
+}
