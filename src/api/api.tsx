@@ -1,4 +1,5 @@
 import axios from "axios";
+import {notifier,NotificationType} from '../components/Notifier/useNotifier';
 
 abstract class VideoDataRequester{
   async callToApi(url:string){
@@ -19,7 +20,7 @@ class YtVideoDataRequester extends VideoDataRequester{
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${this.ytKey}`
     );
     if (data.pageInfo.totalResults !== 1) {
-      throw new Error("There is no video for this id");
+      notifier(NotificationType.error,"There is no video for this id");
     }
     return this.parseResponse(data);
   }
@@ -59,7 +60,7 @@ export const getVideoDataById = async (id: string) => {
     const data = await ytVideoDataRequester.callToYTapi(id);
     return data;
   } catch (error) {
-    throw new Error(error)
+    notifier(NotificationType.error, error);
   }
 };
 

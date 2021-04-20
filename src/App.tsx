@@ -1,9 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
+import "react-toastify/dist/ReactToastify.css";
+import {toast} from "react-toastify";
 
 import {Navbar} from './components';
 import { AddVideoForm, VideoGallery } from "./pages";
+
+toast.configure();
 
 function App() {
 
