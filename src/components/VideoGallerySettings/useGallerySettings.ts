@@ -1,5 +1,6 @@
 import { SyntheticEvent,useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
+
 import {
     selectPage,
     selectDisplayMethod,
@@ -19,11 +20,15 @@ import {
   showDemoVideos,
   selectMaxPage,
   showMyVideos,
+  VideoData,
 } from "../../app/data/videoSlice";
+import {database} from '../../api/DatabaseManager';
 
 export const useGallerySettings=()=>{
 
     const [toggleVideos, setToggleVideos] = useState<boolean>(true)
+    const [modal, setModal] = useState(false);
+    const toggleModal = () => setModal(!modal);
 
     const dispatch = useDispatch()
     const displayMethod=useSelector(selectDisplayMethod);
@@ -70,7 +75,8 @@ export const useGallerySettings=()=>{
 
     const handleDeleteAll=()=>{
         deleteVideosFromUi();
-        //TODO: delete from DB
+        database.dangerousDropDatabase();
+        toggleModal()
     }
 
     const handleShowDemoVideos=()=>{
@@ -80,8 +86,10 @@ export const useGallerySettings=()=>{
 
     const handleShowMyVideos=()=>{
         setToggleVideos(!toggleVideos);
-        //get Data from DB and push it to state
-        dispatch(showMyVideos());
+        database.getAllObjects<(result: VideoData[]) => void>(
+          "videos",
+          (videos) => {dispatch(showMyVideos(videos));}
+        );
     }
 
     return {
@@ -99,5 +107,7 @@ export const useGallerySettings=()=>{
       handleShowDemoVideos,
       handleShowMyVideos,
       toggleVideos,
+      modal,
+      toggleModal,
     };
 }

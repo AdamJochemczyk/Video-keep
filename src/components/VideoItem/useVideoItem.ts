@@ -4,6 +4,7 @@ import {getVideoDataById} from '../../api/api';
 import { IVideoItem } from "../componentInterfaces";
 import { useDispatch } from "react-redux";
 import {addVideoToFavoriteByVideoId,deleteVideo} from '../../app/data/videoSlice';
+import {database} from '../../api/DatabaseManager';
 
 
 export const useVideoItem=(props:VideoData)=>{
@@ -37,11 +38,11 @@ export const useVideoItem=(props:VideoData)=>{
   },[id])
 
   const handleAddToFavorite = () => {
-    //TODO: update it in DB
+    database.editObject("videos", { id, addedAt, isFavorite:!isFavorite, videoPlatform });
     dispatch(addVideoToFavoriteByVideoId({id} as VideoData));
   };
   const handleDelete = () => {
-    //TODO: update it in DB
+    database.deleteObject("videos",id);
     dispatch(deleteVideo({ id } as VideoData));
   };
   const handleImageError = (ev: SyntheticEvent<HTMLImageElement>) => {

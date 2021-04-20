@@ -24,12 +24,10 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
     <>
       {isLoading ? (
         "Loading..."
-      ) : isError ? (
-        <p>Error</p>
       ) : (
         <Col className="m-2 p-2 shadow-lg d-flex flex-column">
-          <h2 className="text-center">{dataFromAPI?.title}</h2>
-          <div className="mb-2 p-1 d-flex justify-content-center">
+          <h2 className={`text-center ${isError && "text-danger"}`}>{isError ? "Something went wrong" : dataFromAPI?.title}</h2>
+          {!isError && <div className="mb-2 p-1 d-flex justify-content-center">
             <picture>
               <source
                 srcSet={dataFromAPI?.maxres}
@@ -50,7 +48,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
                 onError={handleImageError}
               />
             </picture>
-          </div>
+          </div>}
           <div className="d-flex justify-content-around">
             <p>
               <span>Views:</span> {dataFromAPI?.viewCount}

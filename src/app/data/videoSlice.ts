@@ -37,16 +37,9 @@ export const videoSlice = createSlice({
     showDemoVideos: () => {
       return demoVideos;
     },
-    showMyVideos: () => {
-      //TODO: data from DB
-      return [
-        {
-          id: "XLLeYojb9K4",
-          addedAt: "myvideo",
-          isFavorite: false,
-          videoPlatform: "youtube",
-        },
-      ];
+    showMyVideos: (state,action:PayloadAction<VideoData[]>) => {
+      console.log(...action.payload)
+      return [...action.payload];
     },
   },
 });

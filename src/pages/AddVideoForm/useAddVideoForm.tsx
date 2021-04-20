@@ -15,6 +15,8 @@ export const useAddVideoForm = () => {
       const videoId = platformVideoIdGetters.getVideoIdByPlatform(data);
         return {
           ...data,
+          isFavorite: false,
+          addedAt: new Date().toISOString().substring(0, 10),
           id:videoId,
         }
     }

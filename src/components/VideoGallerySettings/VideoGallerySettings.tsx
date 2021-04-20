@@ -1,5 +1,13 @@
 import React from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+} from "reactstrap";
 import {RoundedButton} from '../../components';
 
 import {useGallerySettings} from './useGallerySettings';
@@ -20,6 +28,7 @@ const VideoGallerySettings = () => {
     handleShowDemoVideos,
     handleShowMyVideos,
     toggleVideos,
+    modal,toggleModal
   } = useGallerySettings();
 
   return (
@@ -63,16 +72,18 @@ const VideoGallerySettings = () => {
           md="3"
           className="d-flex justify-content-around align-items-center"
         >
-          <Button color="danger" onClick={handleDeleteAll}>
+          <Button color="danger" onClick={toggleModal}>
             Delete all
           </Button>
-          {toggleVideos ? 
-          <Button color="secondary" onClick={handleShowDemoVideos}>
-            Demo videos
-          </Button> 
-          :<Button color="secondary" onClick={handleShowMyVideos}>
-            My videos
-          </Button> }
+          {toggleVideos ? (
+            <Button color="secondary" onClick={handleShowDemoVideos}>
+              Demo videos
+            </Button>
+          ) : (
+            <Button color="secondary" onClick={handleShowMyVideos}>
+              My videos
+            </Button>
+          )}
         </Col>
         <Col sm="12" md="2" className="d-flex flex-column">
           <label>Sort by:</label>
@@ -86,6 +97,21 @@ const VideoGallerySettings = () => {
             <option value="favorite">Favorite</option>
           </select>
         </Col>
+        <Modal isOpen={modal} toggle={toggleModal}>
+          <ModalHeader toggle={toggleModal}>
+            Are you sure to delete all videos?
+          </ModalHeader>
+          <ModalBody>
+            <div className="d-flex justify-content-end">
+              <Button color="danger" onClick={handleDeleteAll} className="m-2">
+                Delete all
+              </Button>
+              <Button color="secondary" onClick={toggleModal} className="m-2">
+                Cancel
+              </Button>
+            </div>
+          </ModalBody>
+        </Modal>
       </Row>
     </Container>
   );
