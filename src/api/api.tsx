@@ -55,6 +55,7 @@ const ytVideoDataRequester = new YtVideoDataRequester();
 
 export const getVideoDataById = async (id: string) => {
   try {
+    //TODO: choose platform to call for data
     const data = await ytVideoDataRequester.callToYTapi(id);
     return data;
   } catch (error) {

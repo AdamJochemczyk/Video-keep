@@ -159,3 +159,5 @@ export class DatabaseManager {
     });
   }
 }
+
+export const database=new DatabaseManager("videos-database",["videos"]);

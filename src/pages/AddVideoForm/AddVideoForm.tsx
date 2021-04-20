@@ -1,15 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import {Form, FormGroup,Label,Button} from "reactstrap";
-
-export enum VideoPlatform {
-  youtube,
-  vimeo,
-}
-type VideoInputData = {
-  link: string;
-  platform: VideoPlatform;
-};
+import { useAddVideoForm, VideoInputData } from "./useAddVideoForm";
 
 const AddVideoForm: React.FC = () => {
   const {
@@ -18,8 +10,8 @@ const AddVideoForm: React.FC = () => {
     formState: { errors },
   } = useForm<VideoInputData>();
 
-  const onSubmit = (data: VideoInputData) => {console.log(data)};
-
+  const {onSubmit}=useAddVideoForm();
+  
   return (
     <div className="container">
       <div className="row justify-content-center">

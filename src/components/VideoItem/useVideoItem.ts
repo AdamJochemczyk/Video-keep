@@ -50,10 +50,6 @@ export const useVideoItem=(props:VideoData)=>{
   };
 
   return {
-    videoData:{
-      id,
-      videoPlatform
-    },
     id,
     addedAt,
     isFavorite,
