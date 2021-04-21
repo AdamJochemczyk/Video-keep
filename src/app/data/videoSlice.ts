@@ -38,7 +38,6 @@ export const videoSlice = createSlice({
       return demoVideos;
     },
     showMyVideos: (state,action:PayloadAction<VideoData[]>) => {
-      console.log(...action.payload)
       return [...action.payload];
     },
   },
