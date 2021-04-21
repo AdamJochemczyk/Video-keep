@@ -12,6 +12,7 @@ class PlatformVideoIdGetters {
       return match[2];
     } else {
       notifier(NotificationType.error,"Can't get id from this link");
+      return "";
     }
   };
   private getVimeoVideoId = (url: string) => {
@@ -20,6 +21,7 @@ class PlatformVideoIdGetters {
       return match[1];
     } else {
       notifier(NotificationType.error, "This isn't vimeo link");
+      return ""
     }
   };
 
@@ -31,6 +33,7 @@ class PlatformVideoIdGetters {
         return this.getVimeoVideoId(data.link);
       default:
         notifier(NotificationType.error,"Something went wrong");
+        return "";
     }
   }
 }

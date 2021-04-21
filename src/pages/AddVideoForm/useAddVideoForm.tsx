@@ -13,7 +13,7 @@ export type VideoInputData = {
 
 export const useAddVideoForm = () => {
   const prepareData = (data: VideoInputData) => {
-    const videoId = platformVideoIdGetters.getVideoIdByPlatform(data);
+    const videoId:string = platformVideoIdGetters.getVideoIdByPlatform(data);
     return {
       ...data,
       isFavorite: false,
@@ -26,7 +26,10 @@ export const useAddVideoForm = () => {
     if (!database) {
       notifier(NotificationType.error, "No connection with DB, try later");
     }
-    database.createObject("videos", prepareData(data));
+    const dbRecord = prepareData(data);
+    if(dbRecord.id!==""){
+      database.createObject("videos", prepareData(data));
+    }
   };
 
   const onSubmit = (data: VideoInputData) => {

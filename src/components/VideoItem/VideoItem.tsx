@@ -9,7 +9,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
     id,
     addedAt,
     isFavorite,
-    videoPlatform,
+    platform,
     modal,
     dataFromAPI,
     isLoading,
@@ -28,7 +28,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
         <Col className="m-2 p-2 shadow-lg d-flex flex-column">
           <h2 className={`text-center ${isError && "text-danger"}`}>{isError ? "Something went wrong" : dataFromAPI?.title}</h2>
           {!isError && <div className="mb-2 p-1 d-flex justify-content-center">
-            <picture>
+            <picture onClick={toggleModal}>
               <source
                 srcSet={dataFromAPI?.maxres}
                 media="(min-width:1270px)"
@@ -77,7 +77,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
                 <p className="text-center">{dataFromAPI?.title}</p>
               </ModalHeader>
               <ModalBody>
-                <VideoViewer videoId={id} videoPlatform={videoPlatform}></VideoViewer>
+                <VideoViewer videoId={id} videoPlatform={platform}></VideoViewer>
               </ModalBody>
             </Modal>
           </div>

@@ -9,7 +9,7 @@ import {database} from '../../api/DatabaseManager';
 
 export const useVideoItem=(props:VideoData)=>{
   
-  const { id, addedAt, isFavorite,videoPlatform } = props;
+  const { id, addedAt, isFavorite,platform } = props;
 
   const dispatch = useDispatch()
 
@@ -38,7 +38,7 @@ export const useVideoItem=(props:VideoData)=>{
   },[id])
 
   const handleAddToFavorite = () => {
-    database.editObject("videos", { id, addedAt, isFavorite:!isFavorite, videoPlatform });
+    database.editObject("videos", { id, addedAt, isFavorite:!isFavorite, platform });
     dispatch(addVideoToFavoriteByVideoId({id} as VideoData));
   };
   const handleDelete = () => {
@@ -54,7 +54,7 @@ export const useVideoItem=(props:VideoData)=>{
     id,
     addedAt,
     isFavorite,
-    videoPlatform,
+    platform,
     modal,
     dataFromAPI,
     isLoading,

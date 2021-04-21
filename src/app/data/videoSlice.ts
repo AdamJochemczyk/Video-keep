@@ -6,7 +6,7 @@ export interface VideoData {
   id: string;
   addedAt: string;
   isFavorite: boolean;
-  videoPlatform: string;
+  platform: string;
 }
 
 const initialState: VideoData[] = [];

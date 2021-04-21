@@ -81,7 +81,7 @@ const VideoGallerySettings = () => {
             </Button>
           ) : (
             <Button color="secondary" onClick={handleShowMyVideos}>
-              My videos
+              Show videos
             </Button>
           )}
         </Col>
