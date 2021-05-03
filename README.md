@@ -12,7 +12,8 @@ App was created to improve skills in TS, Redux, React.
 * React-router,
 * React-toastify,
 * Styled-components,
-* Reactstrap
+* Reactstrap,
+* IndexedDB,
 
 ## Launch
 
