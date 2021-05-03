@@ -60,13 +60,13 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
           <p className="text-center">Added to library at: {addedAt}</p>
 
           <div className="d-flex justify-content-center mt-auto" style={{height: "50px"}}>
-            <AwesomeButton onClick={toggleModal}>
+            <AwesomeButton in="row" onClick={toggleModal}>
               <i className="fas fa-tv"></i>
             </AwesomeButton>
-            <AwesomeButton onClick={handleDelete}>
+            <AwesomeButton in="row" onClick={handleDelete}>
               <i className="fas fa-trash" />
             </AwesomeButton>
-            <AwesomeButton onClick={handleAddToFavorite}>
+            <AwesomeButton in="row" onClick={handleAddToFavorite}>
               <i
                 className="fas fa-heart"
                 style={{ color: isFavorite ? "red" : "black" }}
