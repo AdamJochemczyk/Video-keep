@@ -35,6 +35,7 @@ export const useVideoItem=(props:VideoData)=>{
 
   useEffect(() => {
     getDataFromAPI(id);
+    // eslint-disable-next-line
   },[id])
 
   const handleAddToFavorite = () => {

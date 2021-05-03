@@ -6,12 +6,13 @@ import { notifier, NotificationType } from "../components/Notifier/useNotifier";
 class PlatformVideoIdGetters {
   
   private getYoutubeVideoId = (url: string) => {
+    // eslint-disable-next-line
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     if (match && match[2].length === 11) {
       return match[2];
     } else {
-      notifier(NotificationType.error,"Can't get id from this link");
+      notifier(NotificationType.error, "Can't get id from this link");
       return "";
     }
   };

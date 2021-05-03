@@ -38,6 +38,7 @@ export const useGallerySettings = () => {
         importVideosFromDb();
       }, 1000);
     }
+    // eslint-disable-next-line
   }, [database]);
 
   const dispatch = useDispatch();
