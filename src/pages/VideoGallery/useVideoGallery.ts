@@ -44,7 +44,6 @@ export const useVideoGallery =()=>{
     }
     
     useEffect(() => {
-      console.log(selectedPage,elementsOnPage)
       const sortedVideos = sortVideos(storedVideos, sortMethod);
       setVideos(pagination(sortedVideos,selectedPage,elementsOnPage));
     }, [sortVideos,storedVideos,sortMethod,selectedPage,elementsOnPage]);

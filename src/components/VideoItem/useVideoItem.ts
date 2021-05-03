@@ -23,7 +23,7 @@ export const useVideoItem=(props:VideoData)=>{
   const getDataFromAPI=async (videoId:string)=>{
     setIsLoading(true);
     try{
-          const data = await getVideoDataById(videoId);
+          const data = await getVideoDataById(videoId,platform);
           setDataFromAPI(data as IVideoItem);
     }
     catch(error){
