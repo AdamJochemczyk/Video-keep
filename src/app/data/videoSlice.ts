@@ -63,7 +63,7 @@ export const selectVideoCount = (state: RootState) => {
 export const selectMaxPage = (state: RootState) => {
   const elementsOnPage = state.gallerySettings.elementsOnPage;
   const maxPage = Math.ceil(state.videos.length / elementsOnPage);
-  return maxPage <= 1 ? 1 : maxPage + 1;
+  return maxPage <= 1 ? 1 : maxPage;
 };
 
 export default videoSlice.reducer;

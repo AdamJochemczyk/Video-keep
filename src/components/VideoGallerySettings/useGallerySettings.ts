@@ -6,6 +6,7 @@ import {
   selectDisplayMethod,
   selectElementsOnPage,
   selectSortBy,
+  resetPage,
   prevPage,
   nextPage,
   changeDisplayMethod,
@@ -60,6 +61,7 @@ export const useGallerySettings = () => {
     const target = ev.target as HTMLSelectElement;
     const newNumberOnPage = parseInt(target.value);
     dispatch(changeElementsOnPage(newNumberOnPage as possibleElementsOnPage));
+    dispatch(resetPage())
   };
 
   const handlePrevPage = () => {

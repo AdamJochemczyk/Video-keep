@@ -10,7 +10,7 @@ export const useVideoGallery =()=>{
     const selectedPage=useSelector(selectPage);
     const elementsOnPage=useSelector(selectElementsOnPage);
     const sortMethod=useSelector(selectSortBy)
-    //TODO: depeonds on settings return filtered/sorted videos return type of display/pagination
+
     const showOnlyFavoriteVideos=(videos:VideoData[])=>{
       return videos.filter(video=>video.isFavorite===true)
     }
@@ -38,10 +38,16 @@ export const useVideoGallery =()=>{
             return sortByDateDesc(videos);
         }
       },[]);
+
+    const pagination=(allVideos:VideoData[],selectedPage:number,elementsOnPage:number)=>{
+      return allVideos.slice((selectedPage-1)*elementsOnPage,selectedPage*elementsOnPage);
+    }
     
     useEffect(() => {
-      setVideos(sortVideos(storedVideos,sortMethod));
-    }, [sortVideos,storedVideos,sortMethod]);
+      console.log(selectedPage,elementsOnPage)
+      const sortedVideos = sortVideos(storedVideos, sortMethod);
+      setVideos(pagination(sortedVideos,selectedPage,elementsOnPage));
+    }, [sortVideos,storedVideos,sortMethod,selectedPage,elementsOnPage]);
 
     return {displayMethod,videos}
 }

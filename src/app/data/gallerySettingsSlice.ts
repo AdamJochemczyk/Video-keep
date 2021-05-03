@@ -23,6 +23,9 @@ export const gallerySettingsSlice = createSlice({
   name: "gallerySettings",
   initialState,
   reducers: {
+    resetPage: (state)=>{
+      state.page=1
+    },
     prevPage: (state) => {
       state.page -= 1;
     },
@@ -50,6 +53,7 @@ export const gallerySettingsSlice = createSlice({
 export const {
   prevPage,
   nextPage,
+  resetPage,
   changeDisplayMethod,
   changeElementsOnPage,
   changeSortBy,
