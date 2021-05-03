@@ -26,7 +26,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
         "Loading..."
       ) : (
         <Col className="m-2 p-2 shadow-lg d-flex flex-column">
-          <h2 className={`text-center ${isError && "text-danger"}`}>{isError ? "Something went wrong" : dataFromAPI?.title}</h2>
+          <h5 className={`text-center ${isError && "text-danger"}`}>{isError ? "Something went wrong" : dataFromAPI?.title}</h5>
           {!isError && <div className="mb-2 p-1 d-flex justify-content-center">
             <picture onClick={toggleModal}>
               <source
@@ -59,7 +59,7 @@ const VideoItem: React.FC<{ props: VideoData }> = ({ props }): JSX.Element => {
           </div>
           <p className="text-center">Added to library at: {addedAt}</p>
 
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center mt-auto" style={{height: "50px"}}>
             <AwesomeButton onClick={toggleModal}>
               <i className="fas fa-tv"></i>
             </AwesomeButton>
